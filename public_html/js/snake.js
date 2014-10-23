@@ -98,6 +98,9 @@ function snakeUpdate(){
         snakeHeadX--;
     }
     
+    checkFoodCollisions(snakeHeadX, snakeHeadY);
+    checkWallCollisions(snakeHeadX, snakeHeadY);
+    
     var snakeTail = snake.pop();
     snakeTail.x = snakeHeadX;
     snakeTail.y = snakeHeadY;
@@ -148,14 +151,24 @@ function setFoodPosition(){
       else if(event.keyCode == "37" && snakeDirection != "right"){
           snakeDirection = "left";
       }
-      
-      
-      
-      
-      
-      
-      
-      
+    
+  }
+  /*@#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
+   * Collision Handling
+   * @#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
+   */
+  function checkFoodCollisions(snakeHeadX, snakeHeadY){
+      if(snakeHeadX == food.x && snakeHeadY == food.y){
+          snake.push({
+              x:0,
+              y:0
+          });
+          snakeLength++;
+      }
       
   }
-  
+     function checkWallCollisions(snakeHeadX, snakeHeadY){
+         if(snakeHeadX * snakeSize>= screenWidth || snakeHeadX * snakeSize< 0){
+             console.log("Wall Collision");
+         }
+     } 
