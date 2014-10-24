@@ -172,3 +172,10 @@ function setFoodPosition(){
              console.log("Wall Collision");
          }
      } 
+     function checkSnakeCollision(snakeHeadX, snakeHeadY){
+      for(var index = 1; index < snake.length; index++){
+          if(snakeHeadX == snake[index].x && snakeHeadY == snake[index].y){
+              
+          }
+      }   
+     }
