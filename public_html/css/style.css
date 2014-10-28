@@ -6,3 +6,25 @@ body{
 #game-screen{
     display: block;
 }
+#gameOver{
+    position: absolute;
+    visibility: hidden;
+}
+h1, h3{
+    font-family: 'Exo', sans-serif;
+    color: red;
+    text-align: center;
+   
+}
+.title{
+    font-size: 200px;
+    margin-top: 0px;
+}
+#restartButton{
+    font-size: 70px;
+    border: 3px solid red; 
+    border-radius: 10px;
+}
+#restartButton:hover{
+    background-color: dimgray;
+}

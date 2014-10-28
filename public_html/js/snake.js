@@ -15,6 +15,7 @@ var screenWidth;
 var screenHeight;
 
 var gameState;
+var gameOverMenu;
 
 /*
  * @#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
@@ -43,6 +44,9 @@ function gameInitialize() {
     canvas.height = screenHeight;
 
     document.addEventListener("keydown", keyboardHandler);
+    
+    gameOverMenu = document.getElementById("gameOver");
+    centerMenuPosition(gameOverMenu);
 
     setState("PLAY");
 }
@@ -178,7 +182,7 @@ function checkWallCollisions(snakeHeadX, snakeHeadY) {
         snakeHeadY * snakeSize >= screenHeight || snakeHeadY * snakeSize < 0
        ) 
     {
-        setState("GAMEOVER");
+        setState("GAME OVER");
     }
 }
 ;
@@ -195,4 +199,23 @@ function checkSnakeCollision(snakeHeadX, snakeHeadY) {
  */
 function setState(state) {
     gameState = state;
+    showMenu(state);
+}
+
+/*@#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
+ * Menu Functions
+ * @#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
+ */
+
+function displayMenu(menu){
+    menu.style.visibility = "visible";
+}
+function showMenu(state){
+    if(state == "GAME OVER"){
+        displayMenu(gameOverMenu);
+    }
+}
+function centerMenuPosition(menu){
+    menu.style.top = (screenHeight / 2) - (menu.) "px";
+    menu.style.left = (screenWidth / 2) + "px";
 }
