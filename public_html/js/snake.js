@@ -26,6 +26,8 @@ var scoreboard;
 
 var gameStartMenu;
 var startButton;
+var mediumButton;
+var hardButton;
 
 
 /*
@@ -37,7 +39,8 @@ var startButton;
 gameInitialize();
 snakeInitialize();
 foodInitialize();
-setInterval(gameLoop, 1500 / 50);
+setInterval(gameLoop, 2500 / 50);
+setMediumInterval(gameLoopMedium, 2000 / 50);
 
 /*@#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
  * Game Functions
@@ -68,18 +71,34 @@ function gameInitialize() {
     gameStartMenu = document.getElementById("gameStart");
     centerMenuPosition(gameStartMenu);
     
+    gameMediumMenu = document.getElementById("gameStartMedium");
+    centerMenuPosition(gameMediumMenu);
+    
     startButton = document.getElementById("startButton");
     startButton.addEventListener("click", gameStart);
+    
+    mediumButton = document.getElementById("mediumButton");
+    mediumButton.addEventListener("click", gameStart);
     
     foodMusic = document.getElementById("food");
     
     //setState("PLAY");
     setState("START");
+    setstate("MEDIUM");
 }
 function gameLoop() {
     gameDraw();
     drawScoreBoard();
     if (gameState == "PLAY") {
+        snakeUpdate();
+        snakeDraw();
+        foodDraw();
+    }
+}
+function gameLoopMedium() {
+    gameDraw();
+    drawScoreBoard();
+    if (gameState == "MEDIUM") {
         snakeUpdate();
         snakeDraw();
         foodDraw();
@@ -102,6 +121,12 @@ function gameStart(){
     foodInitialize();
     hideMenu(gameStartMenu);
     setState("PLAY");
+}
+function gameStartMedium(){
+    snakeInitialize();
+    foodInitialize();
+    hideMenu(gameMediumMenu);
+    setState("MEDIUM");
 }
 
 /*@#$%@$%#$%@$%#@$&#@&&#@&&$$$@#$$&$#@$$@#$%$####$%%$#@#$%$#@@#$%$##$%$#@#$%#&#
@@ -278,6 +303,9 @@ function showMenu(state){
         displayMenu(playHUD);
     }
     else if(state == "START"){          
+        displayMenu(gameStartMenu);
+    }
+      else if(state == "MEDIUM"){          
         displayMenu(gameStartMenu);
     }
 }
